@@ -1,0 +1,34 @@
+name: peoplework
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: peoplework
+      POSTGRES_USER: peoplework
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-peoplework-local}
+    ports:
+      - "127.0.0.1:${DB_PORT:-55432}:5432"
+    volumes:
+      - peoplework_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U peoplework -d peoplework"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  app:
+    build: .
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/peoplework
+      DB_USER: peoplework
+      DB_PASSWORD: ${DB_PASSWORD:-peoplework-local}
+      HR_USERNAME: ${HR_USERNAME:-admin}
+      HR_PASSWORD: ${HR_PASSWORD:-Welcome123!}
+      SEED_DEMO: ${SEED_DEMO:-true}
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8648"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  peoplework_data:

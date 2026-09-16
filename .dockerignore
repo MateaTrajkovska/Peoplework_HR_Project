@@ -1,0 +1,10 @@
+**/node_modules
+**/target
+**/.git
+**/.idea
+**/.vscode
+**/dist
+**/.DS_Store
+**/src/main/resources/static
+run
+.env

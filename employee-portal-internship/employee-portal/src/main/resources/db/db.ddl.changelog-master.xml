@@ -1,0 +1,500 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+    <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                                        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd
+                                        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+<changeSet id="TB#1-Create User" author="Matea">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <tableExists tableName="core_user"/>
+        </not>
+    </preConditions>
+    <createTable tableName="core_user">
+        <column name="uuid" type="UUID">
+            <constraints nullable="false" primaryKey="true"/>
+        </column>
+        <column name="username" type="TEXT">
+            <constraints nullable="false" unique="true"/>
+        </column>
+        <column name="password" type="TEXT">
+            <constraints nullable="false"/>
+        </column>
+        <column name="role" type="INT">
+            <constraints nullable="false"/>
+        </column>
+        <column name="status" type="INT" defaultValueNumeric="1">
+            <constraints nullable="false"/>
+        </column>
+        <column name="language" type="TEXT">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="created_on" type="TIMESTAMPTZ">
+            <constraints nullable="false"/>
+        </column>
+        <column name="created_by" type="TEXT"/>
+        <column name="modified_on" type="TIMESTAMPTZ"/>
+        <column name="modified_by" type="TEXT"/>
+    </createTable>
+</changeSet>
+
+    <changeSet id="TB#1-create-core-employee" author="Jana">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <and>
+                    <tableExists tableName="core_employee"/>
+                    <sequenceExists sequenceName="seq_employee_number"/>
+                </and>
+            </not>
+        </preConditions>
+
+        <createSequence sequenceName="seq_employee_number" startValue="10000" incrementBy="1"/>
+
+        <createTable tableName="core_employee">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="personal_id" type="TEXT"/>
+            <column name="status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_number" type="BIGINT" defaultValueSequenceNext="seq_employee_number">
+                <constraints nullable="false" />
+            </column>
+            <column name="gender" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nationality" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_uuid" type="UUID"/>
+
+            <column name="created_on" type="TIMESTAMPTZ"/>
+            <column name="created_by" type="TEXT"/>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="TB#1-create-core-employee-contact" author="Jana">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="core_employee"/>
+            <not>
+                <tableExists tableName="core_employee_contact"/>
+            </not>
+        </preConditions>
+        <createTable tableName="core_employee_contact">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="employee_uuid" type="UUID">
+                <constraints nullable="false"
+                             foreignKeyName="fk_contact_employee"
+                             referencedTableName="core_employee"
+                             referencedColumnNames="uuid"/>
+            </column>
+            <column name="email" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_type" type="INT"/>
+            <column name="contact_status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_on" type="TIMESTAMPTZ"/>
+            <column name="created_by" type="TEXT"/>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="TB#1-create-core-employee-finance" author="Jana">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="core_employee"/>
+            <not>
+                <tableExists tableName="core_employee_finance"/>
+            </not>
+        </preConditions>
+        <createTable tableName="core_employee_finance">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="employee_uuid" type="UUID">
+                <constraints nullable="false"
+                             foreignKeyName="fk_finance_employee"
+                             referencedTableName="core_employee"
+                             referencedColumnNames="uuid"/>
+            </column>
+            <column name="bank_account" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bank_status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_on" type="TIMESTAMPTZ"/>
+            <column name="created_by" type="TEXT"/>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="TB#1-Create Core Employee Info" author="Sanja">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="core_employee"/>
+            <not>
+                <tableExists tableName="core_employee_info"/>
+            </not>
+        </preConditions>
+        <createTable tableName="core_employee_info">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="employee_uuid" type="uuid">
+                <constraints nullable="false"
+                             foreignKeyName="fk_employee_info_employee"
+                             referencedTableName="core_employee"
+                             referencedColumnNames="uuid"/>
+            </column>
+            <column name="employee_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="DATE"/>
+            <column name="identification_number" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prior_experience" type="TEXT"/>
+            <column name="position" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="info_status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_on" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="TEXT"/>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="TB#1-Create Core Employee Address" author="Sanja">
+        <preConditions  onFail="MARK_RAN">
+            <tableExists tableName="core_employee"/>
+            <not>
+                <tableExists tableName="core_employee_address"/>
+            </not>
+        </preConditions>
+        <createTable tableName="core_employee_address">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="employee_uuid" type="UUID">
+                <constraints nullable="false"
+                             foreignKeyName="fk_employee_address_employee"
+                             referencedTableName="core_employee"
+                             referencedColumnNames="uuid"/>
+            </column>
+            <column name="postal_code" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="municipality" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_on" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="TEXT"/>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="TB#1-Create Core Employee Report" author="Sanja">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="core_employee"/>
+            <not>
+                <tableExists tableName="core_employee_report"/>
+            </not>
+        </preConditions>
+        <createTable tableName="core_employee_report">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="employee_uuid" type="UUID">
+                <constraints nullable="false"
+                             foreignKeyName="fk_employee_report_employee"
+                             referencedTableName="core_employee"
+                             referencedColumnNames="uuid"/>
+            </column>
+            <column name="internal_note" type="TEXT"/>
+            <column name="report_status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_on" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="TEXT">
+            </column>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="TB#5-create-absence" author="Jana">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="abs_absence"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="abs_absence">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="year" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_days" type="INT" defaultValueNumeric="20">
+                <constraints nullable="false"/>
+            </column>
+            <column name="used_days" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="absence_status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valid_from" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valid_to" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="employee_uuid" type="UUID">
+                <constraints nullable="false"
+                             foreignKeyName="fk_absence_employee"
+                             referencedTableName="core_employee"
+                             referencedColumnNames="uuid"/>
+            </column>
+
+            <column name="created_on" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="TEXT"/>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="TB#5-create-absence-usage" author="Jana">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="abs_absence"/>
+            <not>
+                <tableExists tableName="abs_absence_usage"/>
+            </not>
+        </preConditions>
+        <createTable tableName="abs_absence_usage">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="decision_number" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="decision_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="from_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="to_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="absence_usage_status" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="days_used_from_previous_year" type="INT"/>
+            <column name="days_used_from_current_year" type="INT"/>
+
+            <column name="absence_uuid" type="UUID">
+                <constraints nullable="false"
+                             foreignKeyName="fk_absence_usage_absence"
+                             referencedTableName="abs_absence"
+                             referencedColumnNames="uuid"/>
+            </column>
+
+            <column name="created_on" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="TEXT"/>
+            <column name="modified_on" type="TIMESTAMPTZ"/>
+            <column name="modified_by" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet
+            id="TB#5-add-unique-absence-employee-year"
+            author="Matea">
+
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="abs_absence"/>
+            <not>
+                <uniqueConstraintExists
+                        tableName="abs_absence"
+                        constraintName="uk_absence_employee_year"/>
+            </not>
+        </preConditions>
+
+        <addUniqueConstraint
+                tableName="abs_absence"
+                columnNames="employee_uuid, year"
+                constraintName="uk_absence_employee_year"/>
+    </changeSet>
+    <changeSet
+            id="TB#5-create-absence-decision-sequence"
+            author="Matea">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists
+                        sequenceName="seq_absence_decision_number"/>
+            </not>
+        </preConditions>
+
+        <createSequence
+                sequenceName="seq_absence_decision_number"
+                startValue="1"
+                incrementBy="1"/>
+    </changeSet>
+    <changeSet
+            id="TB#5-add-unique-absence-decision-number"
+            author="Matea">
+
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="abs_absence_usage"/>
+            <not>
+                <uniqueConstraintExists
+                        tableName="abs_absence_usage"
+                        constraintName="uk_absence_usage_decision_number"/>
+            </not>
+        </preConditions>
+
+        <addUniqueConstraint
+                tableName="abs_absence_usage"
+                columnNames="decision_number"
+                constraintName="uk_absence_usage_decision_number"/>
+    </changeSet>
+    <changeSet id="TB#5-add-degree-to-core-employee-info" author="Matea">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="core_employee_info"/>
+            <not>
+                <columnExists tableName="core_employee_info" columnName="degree"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="core_employee_info">
+            <column name="degree" type="INT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="TB#5-update-absence-request-status-default" author="Matea">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="abs_absence_usage"/>
+            <columnExists tableName="abs_absence_usage" columnName="absence_usage_status"/>
+        </preConditions>
+
+        <addDefaultValue
+                tableName="abs_absence_usage"
+                columnName="absence_usage_status"
+                columnDataType="INT"
+                defaultValueNumeric="0"/>
+    </changeSet>
+
+    <changeSet id="TB#5-rename-absence-usage-to-request" author="Matea">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="abs_absence_usage"/>
+            <not>
+                <tableExists tableName="abs_absence_request"/>
+            </not>
+        </preConditions>
+
+        <renameTable
+                oldTableName="abs_absence_usage"
+                newTableName="abs_absence_request"/>
+    </changeSet>
+
+    <changeSet id="TB#5-rename-absence-usage-status-to-request-status" author="Matea">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="abs_absence_request"/>
+            <columnExists
+                    tableName="abs_absence_request"
+                    columnName="absence_usage_status"/>
+        </preConditions>
+
+        <renameColumn
+                tableName="abs_absence_request"
+                oldColumnName="absence_usage_status"
+                newColumnName="absence_request_status"
+                columnDataType="INT"/>
+    </changeSet>
+
+    <changeSet id="TB#5-replace-absence-year-with-valid-from" author="Matea">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="abs_absence"/>
+            <columnExists
+                    tableName="abs_absence"
+                    columnName="year"/>
+            <uniqueConstraintExists
+                    tableName="abs_absence"
+                    constraintName="uk_absence_employee_year"/>
+        </preConditions>
+
+        <dropUniqueConstraint
+                tableName="abs_absence"
+                constraintName="uk_absence_employee_year"/>
+
+        <dropColumn
+                tableName="abs_absence"
+                columnName="year"/>
+
+        <addUniqueConstraint
+                tableName="abs_absence"
+                columnNames="employee_uuid, valid_from"
+                constraintName="uk_absence_employee_valid_from"/>
+    </changeSet>
+
+</databaseChangeLog>
+

@@ -1,0 +1,18 @@
+[
+  {
+    "code": "FULL_TIME",
+    "description": "Full Time"
+  },
+  {
+    "code": "PART_TIME",
+    "description": "Part Time"
+  },
+  {
+    "code": "EXTERNAL",
+    "description": "External"
+  },
+  {
+    "code": "INTERN",
+    "description": "Intern"
+  }
+]

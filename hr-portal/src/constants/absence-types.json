@@ -1,0 +1,114 @@
+[
+  {
+    "code": "UNPAID",
+    "descriptionMk": "Неплатено отсуство",
+    "descriptionEn": "Unpaid leave",
+    "category": "unpaid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "MARRIAGE",
+    "descriptionMk": "За склучување брак",
+    "descriptionEn": "Marriage",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "FAMILY_MARRIAGE",
+    "descriptionMk": "За склучување брак на член од потесното семејство",
+    "descriptionEn": "Family member marriage",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "CHILDBIRTH_FATHER",
+    "descriptionMk": "За раѓање на дете (само за таткото)",
+    "descriptionEn": "Childbirth (father only)",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "BEREAVEMENT_SPOUSE_CHILD",
+    "descriptionMk": "За смрт на сопружник или дете",
+    "descriptionEn": "Death of spouse or child",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "BEREAVEMENT_PARENT_SIBLING",
+    "descriptionMk": "За смрт на родител, брат, сестра",
+    "descriptionEn": "Death of parent or sibling",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "BEREAVEMENT_IN_LAW",
+    "descriptionMk": "За смрт на родител на сопружник",
+    "descriptionEn": "Death of spouse's parent",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "BEREAVEMENT_GRANDPARENT",
+    "descriptionMk": "За смрт на дедо или баба (исто домаќинство)",
+    "descriptionEn": "Death of grandparent (same household)",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "SERIOUS_ILLNESS_FAMILY",
+    "descriptionMk": "Ненадејна сериозна болест на член од потесното семејство",
+    "descriptionEn": "Serious illness of family member",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "RELOCATION_OTHER_CITY",
+    "descriptionMk": "За селидба на семејството од еден во друг град",
+    "descriptionEn": "Relocation to another city",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "RELOCATION_SAME_CITY",
+    "descriptionMk": "За селидба на семејството во ист град",
+    "descriptionEn": "Relocation within same city",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "DISASTER",
+    "descriptionMk": "За елементарни непогоди и други несреќи",
+    "descriptionEn": "Natural disaster or accident",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "TRAINING",
+    "descriptionMk": "За стручно усовршување (упатен од работодавец)",
+    "descriptionEn": "Professional training (employer assigned)",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "BLOOD_DONATION",
+    "descriptionMk": "За дарување на крв",
+    "descriptionEn": "Blood donation",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "COVID19",
+    "descriptionMk": "Ковид-19",
+    "descriptionEn": "COVID-19",
+    "category": "paid",
+    "maxDaysPerYear": null
+  },
+  {
+    "code": "PREGNANCY_RELEASE",
+    "descriptionMk": "Ослободување на бремени жени од физичко присуство",
+    "descriptionEn": "Pregnancy release from physical presence",
+    "category": "long_term_paid",
+    "maxDaysPerYear": null
+  }
+]

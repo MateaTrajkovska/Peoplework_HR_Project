@@ -1,0 +1,54 @@
+[
+  {
+    "code": "200",
+    "description": "Stopanska Banka"
+  },
+  {
+    "code": "210",
+    "description": "NLB Banka"
+  },
+  {
+    "code": "240",
+    "description": "Uni Banka"
+  },
+  {
+    "code": "250",
+    "description": "Sparkasse Banka"
+  },
+  {
+    "code": "270",
+    "description": "Halkbank"
+  },
+  {
+    "code": "280",
+    "description": "Silk Road Bank"
+  },
+  {
+    "code": "290",
+    "description": "TTK Banka"
+  },
+  {
+    "code": "300",
+    "description": "Komercijalna Banka"
+  },
+  {
+    "code": "320",
+    "description": "Centralna Kooperativna Banka"
+  },
+  {
+    "code": "330",
+    "description": "Kapital Banka"
+  },
+  {
+    "code": "380",
+    "description": "ProCredit Bank"
+  },
+  {
+    "code": "500",
+    "description": "Alta Banka"
+  },
+  {
+    "code": "530",
+    "description": "Ohridska Banka"
+  }
+]

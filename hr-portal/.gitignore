@@ -1,0 +1,6 @@
+node_modules
+dist
+.DS_Store
+*.local
+.yarn/install-state.gz
+vite.config.js.timestamp-*

@@ -1,0 +1,5 @@
+export { default as banks } from './banks.json'
+export { default as municipalities } from './municipalities.json'
+export { default as employeeTypes } from './employee-types.json'
+export { default as gender } from './gender.json'
+export { default as jobPositions } from './job-positions.json'

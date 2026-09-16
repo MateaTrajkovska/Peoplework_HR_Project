@@ -1,0 +1,22 @@
+[
+  {
+    "code": "CEO",
+    "description": "Chief Executive Officer"
+  },
+  {
+    "code": "HR",
+    "description": "Human Resources"
+  },
+  {
+    "code": "FE_DEV",
+    "description": "Frontend Developer"
+  },
+  {
+    "code": "BE_DEV",
+    "description": "Backend Developer"
+  },
+  {
+    "code": "QA",
+    "description": "Quality Assurance Engineer"
+  }
+]

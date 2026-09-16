@@ -1,0 +1,22 @@
+[
+  {
+    "code": "EMPLOYER_15",
+    "descriptionMk": "Боледување до 15 дена (работодавец)",
+    "descriptionEn": "Sick leave up to 15 days (employer)"
+  },
+  {
+    "code": "EMPLOYER_30",
+    "descriptionMk": "Боледување до 30 дена (работодавец)",
+    "descriptionEn": "Sick leave up to 30 days (employer)"
+  },
+  {
+    "code": "FZO",
+    "descriptionMk": "Боледување на терет на ФЗО",
+    "descriptionEn": "Sick leave (health insurance)"
+  },
+  {
+    "code": "MATERNITY",
+    "descriptionMk": "Породилно отсуство",
+    "descriptionEn": "Maternity leave"
+  }
+]

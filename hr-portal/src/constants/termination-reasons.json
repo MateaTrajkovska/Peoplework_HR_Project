@@ -1,0 +1,32 @@
+[
+  {
+    "code": "MUTUAL",
+    "descriptionMk": "Спогодбено",
+    "descriptionEn": "Mutual agreement",
+    "category": "mutual"
+  },
+  {
+    "code": "CONTRACT_EXPIRY",
+    "descriptionMk": "Истек на договор",
+    "descriptionEn": "Contract expiry",
+    "category": "expiry"
+  },
+  {
+    "code": "RESIGNATION_WITH_NOTICE",
+    "descriptionMk": "Престанок по барање на работник (со отказен рок)",
+    "descriptionEn": "Resignation with notice period",
+    "category": "resignation"
+  },
+  {
+    "code": "RESIGNATION_WITHOUT_NOTICE",
+    "descriptionMk": "Престанок по барање на работник (без отказен рок)",
+    "descriptionEn": "Resignation without notice period",
+    "category": "resignation"
+  },
+  {
+    "code": "RETIREMENT",
+    "descriptionMk": "Пензионирање",
+    "descriptionEn": "Retirement",
+    "category": "retirement"
+  }
+]
